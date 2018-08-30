@@ -18,22 +18,18 @@ import io.reactivex.schedulers.Schedulers;
 public class MainActivity extends AppCompatActivity {
 
     /**
-     * 设计稿尺寸(根据自己设计师的设计稿的宽度填入 目前UI一般按照苹果6S --> 4.7英寸屏幕设计 分辨率为 750 * 1334)
+     * 设计稿尺寸(根据自己设计师的设计稿的宽度填入
+     * 目前UI一般按照 苹果 6S --> 4.7英寸屏幕设计 分辨率为 750 * 1334
+     * --> 和 Android 5英寸屏幕 720 * 1080 相差不大)
      */
-    private static final int DESIGN_WIDTH = 375;
+    private static final int DESIGN_WIDTH = 360;// 750
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.tvCreate)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        runCreateDemen();
-                    }
-                });
+        findViewById(R.id.tvCreate).setOnClickListener(v -> runCreateDemen());
     }
 
 
@@ -44,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         Observable.fromArray(values)
                 .map(dimenTypes -> {
-                    MakeUtils.makeAll(DESIGN_WIDTH, dimenTypes, "androidui");
+                    MakeUtils.makeAll(DESIGN_WIDTH, dimenTypes);
                     return "";
                 })
                 .subscribeOn(Schedulers.io())//指定的是上游发送事件的线程

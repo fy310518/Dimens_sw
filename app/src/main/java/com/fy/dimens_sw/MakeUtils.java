@@ -72,9 +72,8 @@ public class MakeUtils {
      * 只需传宽进来就行
      *
      * @param type 枚举类型
-     * @param buildDir 生成的目标文件夹
      */
-    public static void makeAll(int designWidth, DimenTypes type, String buildDir) {
+    public static void makeAll(int designWidth, DimenTypes type) {
         try {
             //生成规则
             final String folderName;
@@ -93,7 +92,7 @@ public class MakeUtils {
 
             //生成values文件
             FileOutputStream fos = new FileOutputStream(file.getAbsolutePath() + File.separator + XML_NAME);
-            fos.write(makeAllDimens(type,designWidth).getBytes());
+            fos.write(makeAllDimens(type, designWidth).getBytes());
             fos.flush();
             fos.close();
 
